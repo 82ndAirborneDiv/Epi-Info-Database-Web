@@ -7,7 +7,7 @@
     <Name>EpiInfo.Database.EIWeb</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{90212432-ce7a-40e2-ab46-a7d75ae9ab66}</ProjectGuid>
+    <ProjectGuid>{997e80cb-8f75-47b9-bbeb-cce4a9f8ec2b}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
@@ -23,7 +23,6 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <GenerateCreateScript>True</GenerateCreateScript>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -58,5 +57,106 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\User Defined Types\" />
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Canvas.sql" />
+    <Build Include="dbo\Tables\DataAccessRules.sql" />
+    <Build Include="dbo\Tables\Datasource.sql" />
+    <Build Include="dbo\Tables\DatasourceUser.sql" />
+    <Build Include="dbo\Tables\EIDatasource.sql" />
+    <Build Include="dbo\Tables\ErrorLog.sql" />
+    <Build Include="dbo\Tables\familyset.sql" />
+    <Build Include="dbo\Tables\lk_RecordSource.sql" />
+    <Build Include="dbo\Tables\lk_Status.sql" />
+    <Build Include="dbo\Tables\lk_SurveyType.sql" />
+    <Build Include="dbo\Tables\Organization.sql" />
+    <Build Include="dbo\Tables\ResponseDisplaySettings.sql" />
+    <Build Include="dbo\Tables\ResponseXml.sql" />
+    <Build Include="dbo\Tables\Role.sql" />
+    <Build Include="dbo\Tables\SharedCanvases.sql" />
+    <Build Include="dbo\Tables\SurveyMetaData.sql" />
+    <Build Include="dbo\Tables\SurveyMetadataOrganization.sql" />
+    <Build Include="dbo\Tables\SurveyMetaDataTransform.sql" />
+    <Build Include="dbo\Tables\SurveyMetaDataUser.sql" />
+    <Build Include="dbo\Tables\SurveyMetaDataView.sql" />
+    <Build Include="dbo\Tables\SurveyResponse.sql" />
+    <Build Include="dbo\Tables\SurveyResponseTracking.sql" />
+    <Build Include="dbo\Tables\SurveyResponseUser.sql" />
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\UserOrganization.sql" />
+    <Build Include="dbo\Views\ErrorLogSorted.sql" />
+    <Build Include="dbo\Views\vwCanvasShare.sql" />
+    <Build Include="dbo\Views\vwCanvasUser.sql" />
+    <Build Include="dbo\Views\vwOrgsForUser.sql" />
+    <Build Include="dbo\Views\vwUserDatasource.sql" />
+    <Build Include="dbo\Views\vwUserOrganizationUser.sql" />
+    <Build Include="dbo\Functions\SplitInts.sql" />
+    <Build Include="dbo\Stored Procedures\usp_add_datasource.sql" />
+    <Build Include="dbo\Stored Procedures\usp_add_Epi7DB_record.sql" />
+    <Build Include="dbo\Stored Procedures\usp_add_organization.sql" />
+    <Build Include="dbo\Stored Procedures\usp_add_user.sql" />
+    <Build Include="dbo\Stored Procedures\usp_add_user_datasource.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AddDatasource.sql" />
+    <Build Include="dbo\Stored Procedures\usp_copy_canvas.sql" />
+    <Build Include="dbo\Stored Procedures\usp_log_to_errorlog.sql" />
+    <Build Include="dbo\Stored Procedures\usp_create_epi7_sql_statements.sql" />
+    <Build Include="dbo\Stored Procedures\usp_create_epi7_sql_statements_driver.sql" />
+    <Build Include="dbo\Stored Procedures\usp_delete_canvas.sql" />
+    <Build Include="dbo\Stored Procedures\usp_forgot_password.sql" />
+    <Build Include="dbo\Stored Procedures\usp_get_all_datasources.sql" />
+    <Build Include="dbo\Stored Procedures\usp_get_all_datasourcesxx.sql" />
+    <Build Include="dbo\Stored Procedures\usp_get_canvas_share_status.sql" />
+    <Build Include="dbo\Stored Procedures\usp_get_datasource.sql" />
+    <Build Include="dbo\Stored Procedures\usp_get_form_family.sql" />
+    <Build Include="dbo\Stored Procedures\usp_get_shared_canvases.sql" />
+    <Build Include="dbo\Stored Procedures\usp_get_shared_canvases_guid.sql" />
+    <Build Include="dbo\Stored Procedures\usp_GetDatasourceConnectionString.sql" />
+    <Build Include="dbo\Stored Procedures\usp_GetEIRecord.sql" />
+    <Build Include="dbo\Stored Procedures\usp_GetErrorInfo.sql" />
+    <Build Include="dbo\Stored Procedures\usp_GetFormFieldsInfo.sql" />
+    <Build Include="dbo\Stored Procedures\usp_GetResponseAllFieldsInfo.sql" />
+    <Build Include="dbo\Stored Procedures\usp_GetResponseFieldsInfo.sql" />
+    <Build Include="dbo\Stored Procedures\usp_IsSQLProject.sql" />
+    <Build Include="dbo\Stored Procedures\usp_load_user.sql" />
+    <Build Include="dbo\Stored Procedures\usp_process_sql_server_project_response.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_admins.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_all_canvases.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_all_datasources .sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_all_organization_for_user.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_all_organization_tallys.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_by_username.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_canvases_for_lite.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_canvasInfo.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_canvasInfoGUID         .sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_database_type.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_datasource.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_external_connec_str.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_records_count .sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_super_admin_from_ewav.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_user.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_user_bypass_authentication.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_user_for_authentication.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_usernames.sql" />
+    <Build Include="dbo\Stored Procedures\usp_read_users_for_datasource.sql" />
+    <Build Include="dbo\Stored Procedures\usp_remove_organization.sql" />
+    <Build Include="dbo\Stored Procedures\usp_remove_user_datasource.sql" />
+    <Build Include="dbo\Stored Procedures\usp_save_canvas.sql" />
+    <Build Include="dbo\Stored Procedures\usp_sharecanvas.sql" />
+    <Build Include="dbo\Stored Procedures\usp_soft_delete_Epi7_record.sql" />
+    <Build Include="dbo\Stored Procedures\usp_update_datasource.sql" />
+    <Build Include="dbo\Stored Procedures\usp_update_organization.sql" />
+    <Build Include="dbo\Stored Procedures\usp_update_password.sql" />
+    <Build Include="dbo\Stored Procedures\usp_update_sharedcanvases.sql" />
+    <Build Include="dbo\Stored Procedures\usp_update_user_organization.sql" />
+    <Build Include="dbo\Stored Procedures\usp_update_user.sql" />
+    <Build Include="dbo\User Defined Types\DatasourceUserTableType.sql" />
+    <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
   </ItemGroup>
 </Project>

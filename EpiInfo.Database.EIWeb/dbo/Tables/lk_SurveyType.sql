@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[lk_SurveyType](
+	[SurveyTypeId] [int] NOT NULL,
+	[SurveyType] [varchar](50) NULL,
+ CONSTRAINT [PK_lk_SurveyType] PRIMARY KEY CLUSTERED 
+(
+	[SurveyTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]

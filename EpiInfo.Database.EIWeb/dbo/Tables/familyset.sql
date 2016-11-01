@@ -1,0 +1,22 @@
+﻿CREATE TABLE [dbo].[familyset](
+	[SurveyId] [uniqueidentifier] NOT NULL,
+	[OwnerId] [int] NOT NULL,
+	[SurveyNumber] [nvarchar](50) NULL,
+	[SurveyTypeId] [int] NOT NULL,
+	[ClosingDate] [datetime2](7) NOT NULL,
+	[SurveyName] [nvarchar](500) NOT NULL,
+	[OrganizationName] [nvarchar](500) NULL,
+	[DepartmentName] [nvarchar](500) NULL,
+	[IntroductionText] [nvarchar](max) NULL,
+	[TemplateXML] [xml] NOT NULL,
+	[ExitText] [nvarchar](max) NULL,
+	[UserPublishKey] [uniqueidentifier] NOT NULL,
+	[TemplateXMLSize] [bigint] NOT NULL,
+	[DateCreated] [datetime2](7) NOT NULL,
+	[OrganizationId] [int] NOT NULL,
+	[IsDraftMode] [bit] NOT NULL,
+	[StartDate] [datetime2](7) NOT NULL,
+	[ParentId] [uniqueidentifier] NULL,
+	[ViewId] [int] NULL,
+	[IsSQLProject] [bit] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
