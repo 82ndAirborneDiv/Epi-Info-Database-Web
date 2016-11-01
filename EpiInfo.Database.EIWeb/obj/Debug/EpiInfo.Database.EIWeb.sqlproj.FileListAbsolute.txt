@@ -1,0 +1,9 @@
+C:\EpiInfo\Development\Workspace\Database\EpiInfo.Database.EIWeb\EpiInfo.Database.EIWeb\bin\Debug\EpiInfo.Database.EIWeb.dacpac
+C:\EpiInfo\Development\Workspace\Database\EpiInfo.Database.EIWeb\EpiInfo.Database.EIWeb\bin\Debug\EpiInfo.Database.EIWeb.dll
+C:\EpiInfo\Development\Workspace\Database\EpiInfo.Database.EIWeb\EpiInfo.Database.EIWeb\bin\Debug\EpiInfo.Database.EIWeb.pdb
+C:\EpiInfo\Development\Workspace\Database\EpiInfo.Database.EIWeb\EpiInfo.Database.EIWeb\obj\Debug\Model.xml
+C:\EpiInfo\Development\Workspace\Database\EpiInfo.Database.EIWeb\EpiInfo.Database.EIWeb\obj\Debug\refactor.xml
+C:\EpiInfo\Development\Workspace\Database\EpiInfo.Database.EIWeb\EpiInfo.Database.EIWeb\obj\Debug\postdeploy.sql
+C:\EpiInfo\Development\Workspace\Database\EpiInfo.Database.EIWeb\EpiInfo.Database.EIWeb\obj\Debug\predeploy.sql
+C:\EpiInfo\Development\Workspace\Database\EpiInfo.Database.EIWeb\EpiInfo.Database.EIWeb\obj\Debug\EpiInfo.Database.EIWeb.dll
+C:\EpiInfo\Development\Workspace\Database\EpiInfo.Database.EIWeb\EpiInfo.Database.EIWeb\obj\Debug\EpiInfo.Database.EIWeb.pdb
