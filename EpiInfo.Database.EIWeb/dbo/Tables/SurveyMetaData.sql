@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[SurveyMetaData](
 	[SurveyId] [uniqueidentifier] NOT NULL,
-	[OwnerId] [int] NOT NULL,
+	[OwnerId] [int] NOT NULL CONSTRAINT [DF_SurveyMetaData_OwnerId]  DEFAULT (0),
 	[SurveyNumber] [nvarchar](50) NULL,
 	[SurveyTypeId] [int] NOT NULL,
 	[ClosingDate] [datetime2](7) NOT NULL,
@@ -22,12 +22,28 @@
 	[IsShareable] [bit] NULL,
 	[ShowAllRecords] [bit] NULL CONSTRAINT [DF_SurveyMetaData_ShowAllRecords]  DEFAULT ((0)),
 	[DataAccessRuleId] [int] NULL CONSTRAINT [DF_SurveyMetaData_DataAccessRuleId]  DEFAULT ((1)),
- CONSTRAINT [PK_SurveyMetaData] PRIMARY KEY CLUSTERED 
+ [LastUpdate] DATETIME2 NULL, 
+    CONSTRAINT [PK_SurveyMetaData] PRIMARY KEY CLUSTERED 
 (
 	[SurveyId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
+
+ALTER TABLE [dbo].[SurveyMetaData]  WITH CHECK ADD  CONSTRAINT [FK_SurveyMetaData_lk_SurveyType] FOREIGN KEY([SurveyTypeId])
+REFERENCES [dbo].[lk_SurveyType] ([SurveyTypeId])
+GO
+
+ALTER TABLE [dbo].[SurveyMetaData] CHECK CONSTRAINT [FK_SurveyMetaData_lk_SurveyType]
+GO
+
+ALTER TABLE [dbo].[SurveyMetaData]  WITH CHECK ADD  CONSTRAINT [FK_SurveyMetaData_Organization] FOREIGN KEY([OrganizationId])
+REFERENCES [dbo].[Organization] ([OrganizationId])
+GO
+
+ALTER TABLE [dbo].[SurveyMetaData] CHECK CONSTRAINT [FK_SurveyMetaData_Organization]
+GO
+
 CREATE     TRIGGER [dbo].[tr_update_SurveyMetaData  ]  
     ON [dbo].[SurveyMetaData]  
     FOR UPDATE, INSERT

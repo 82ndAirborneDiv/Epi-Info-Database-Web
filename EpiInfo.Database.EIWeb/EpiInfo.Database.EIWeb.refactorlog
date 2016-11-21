@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="960b2315-7064-41c6-805d-2b6d93e15925" ChangeDateTime="11/14/2016 17:08:50">
+    <Property Name="ElementName" Value="[dbo].[Address].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Address]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AddressId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1916d6f0-477e-4e08-8377-9f44cfb7645a" ChangeDateTime="11/14/2016 17:11:15">
+    <Property Name="ElementName" Value="[dbo].[Address].[Admin]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Address]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AdminId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2a354902-5b87-4f21-bced-d7d25d5e7e12" ChangeDateTime="11/14/2016 17:12:06">
+    <Property Name="ElementName" Value="[dbo].[Admin].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Admin]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AdminId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fc6bbd47-e7d5-41ab-8ea5-046bb804648c" ChangeDateTime="11/18/2016 16:13:39">
+    <Property Name="ElementName" Value="[dbo].[ResponsesForPivot].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ResponsesForPivot]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ResponsePivotId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9fc6b628-8efa-4a33-9a19-f822681abee7" ChangeDateTime="11/18/2016 16:15:11">
+    <Property Name="ElementName" Value="[dbo].[ResponsesForPivot].[RespinseId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ResponsesForPivot]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ResponseId" />
+  </Operation>
+</Operations>
