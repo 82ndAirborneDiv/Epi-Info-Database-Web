@@ -74,17 +74,17 @@ BEGIN
 	    SELECT @RecordsourceId = d.RecordsourceId			  
 	   FROM   deleted AS d;
 
-	   If @RecordsourceId='2'
+	   If @RecordsourceId='2' --Epi7
 		BEGIN
 			RETURN;
 		END
 
-		 If @RecordsourceId='3'
+		 If @RecordsourceId='3' --MobileApplication
 		BEGIN
 			RETURN;
 		END
 
-		 If @RecordsourceId='4'
+		 If @RecordsourceId='4' --EIWS
 		BEGIN
 			RETURN;
 		END
@@ -201,17 +201,17 @@ CREATE    TRIGGER [dbo].[tr_insert_surveyresponse]
                   @RecordsourceId = i.RecordsourceId
            FROM   inserted AS i;
 
-             If @RecordsourceId='2'
+             If @RecordsourceId='2' --Epi7
 		BEGIN
 			RETURN;
 		END
 
-		If @RecordsourceId='3'
+		If @RecordsourceId='3' --MobileApplication
 		BEGIN
 			RETURN;
 		END
 
-		If @RecordsourceId='4'
+		If @RecordsourceId='4' --EIWS
 		BEGIN
 			RETURN;
 		END
@@ -369,77 +369,43 @@ BEGIN
     FROM   surveyresponse
     WHERE  responseid = @ResponseId;
 
-	 IF @RecordsourceId='2'
+	 IF @RecordsourceId='2'--Epi7
 	 BEGIN
 	 RETURN;--For Future Implementation
 	 END
 
-	 IF @RecordsourceId='3'
+	 IF @RecordsourceId='3' --MobileApplication
 	  BEGIN
 	 RETURN;--For Future Implementation
 	 END
 
-	 IF @RecordsourceId='4'
+	 IF @RecordsourceId='4' --EIWS
 		BEGIN
-		DECLARE @FirstSaveLogonNameWS AS VARCHAR (100) = 'EIWS';
-
-		EXECUTE usp_log_to_errorlog @SurveyId, @ResponseId, 'test1'  
-	       
+		DECLARE @FirstSaveLogonNameWS AS VARCHAR (100) = 'EIWS';		
        
-      -- IF @IsDraftMode = 1   
-          -- BEGIN
-             --  RETURN;
-           --END
-       
-       IF  @StatusId <> 3  
+       IF  @StatusId <> 3  --If the record is not complete
            BEGIN
                RETURN;
            END
-	
-		-- If IsSQLProject = true
-			-- Enter data to Epi Info using code similar to EWE Integration
-		--Else
-			-- Code below    
-			
+	---		   			
 		SELECT @IsSQLResponse = IsSQLProject           
 		FROM   surveymetadata
-		WHERE  surveyid = @SurveyId;
-			
-			
-			--SET  @IsSQLResponse = 1    
+		WHERE  surveyid = @SurveyId;									
 			   
-			IF @IsSQLResponse = 1 
+			IF @IsSQLResponse = 1 --For SQL response implement the following logic
 				BEGIN
 					--===========================		
-					-- If Response is not finalized then return    
-					IF @StatusId =  1
-					BEGIN
-					   -- EXEC xp_logevent  70000, 'exited for @statusid != 2',  informational 
-					   RETURN;
-					END
-
-					IF @StatusId =  0    
-					BEGIN
-
-					   RETURN;
-					END
-
-				
+					-- If Response is not finalized then return    														
 					-- Get the Epi7 proects's DB name      
 					SELECT @Epi7DBName = initialcatalog
 					FROM   eidatasource
-					WHERE  surveyid = @SurveyId;
-
-			
+					WHERE  surveyid = @SurveyId;			
 					-- STEP 1   
-					-- call usp_create_Epi7_views_statement   
-					--DECLARE @ViewTableName AS VARCHAR (50);
-
+					-- call usp_create_Epi7_views_statement   				
 					SELECT @ViewTableName = viewtablename
 					FROM   surveymetadataview
 					WHERE  surveyid = @SurveyId;
 				
-
 					SET @InsertviewText = 'INSERT  INTO  [' + @Epi7DBName + '].dbo.[' + @ViewTableName + ']' + ' ([RECSTATUS]    ,
 								[GlobalRecordId]    ,
 								[FirstSaveLogonName]    ,
@@ -479,10 +445,7 @@ BEGIN
 											'usp_create_epi7_sql_statements', 'Insert/Update in #temp table may have failed', 
 											@ErrorNumber, @ErrorSeverity, @ErrorState, @ErrorProcedure, @ErrorLine, @ErrorMessage;
 									  END   
-						END    
-
-
-					
+						END    					
 					 
 					-- STEP 2    
 					EXECUTE usp_create_epi7_sql_statements_driver 
@@ -512,8 +475,8 @@ BEGIN
 					--===========================  
 					RETURN 
 				END
-			ELSE 
-				BEGIN
+			ELSE  --This logic is for pivot logic for Access project
+				BEGIN 
 				   -- Simple replace of Yes with 1 / No with 
 					--DECLARE @xmltext AS VARCHAR (MAX);
 					--SET @xmltext = CONVERT (VARCHAR (MAX), @ResponseXML);
