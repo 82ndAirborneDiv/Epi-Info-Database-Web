@@ -200,11 +200,7 @@ CREATE    TRIGGER [dbo].[tr_insert_surveyresponse]
                   @IsDraftMode = i.IsDraftMode, 
                   @RecordsourceId = i.RecordsourceId
            FROM   inserted AS i;
-
-             If @RecordsourceId='2' --Epi7
-		BEGIN
-			RETURN;
-		END
+            
 
 		If @RecordsourceId='3' --MobileApplication
 		BEGIN
@@ -368,11 +364,7 @@ BEGIN
     SELECT @RecordsourceId = recordsourceid
     FROM   surveyresponse
     WHERE  responseid = @ResponseId;
-
-	 IF @RecordsourceId='2'--Epi7
-	 BEGIN
-	 RETURN;--For Future Implementation
-	 END
+	
 
 	 IF @RecordsourceId='3' --MobileApplication
 	  BEGIN
