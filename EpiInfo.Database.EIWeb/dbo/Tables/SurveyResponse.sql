@@ -498,7 +498,7 @@ BEGIN
 			END
 		END
 
-	 IF @RecordsourceId='1'
+	 IF (@RecordsourceId='1' OR @RecordsourceId='2')
 		BEGIN
 
 		 DECLARE @FirstSaveLogonName AS VARCHAR (100) = 'EWE\';
