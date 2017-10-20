@@ -62,8 +62,8 @@ if @TabName is null
 
 -- Create a work  TABLE                                 
 SELECT doc.col.value('@QuestionName', 'varchar(70)') AS FieldName,
-       doc.col.value('. ', 'varchar(70)') AS Fieldvalue,
-       doc.col.value('. ', 'varchar(70)') AS FieldvalueForInsert, 
+       doc.col.value('. ', 'varchar(MAX)') AS Fieldvalue,
+       doc.col.value('. ', 'varchar(MAX)') AS FieldvalueForInsert, 
        (SELECT fieldtypeid
         FROM   SurveyMetaDataTransform
         WHERE  fieldname = doc.col.value('@QuestionName', 'varchar(70)')
@@ -111,19 +111,21 @@ update #temp
 set Fieldvalue = NULL 
 where Fieldvalue = '' 
  
-update  #temp 
-set  FieldvalueForInsert = 'NULL' 
-where  FieldvalueForInsert = ''    
-and FieldTypeId = 7  
+update #temp 
+set FieldvalueForInsert = 'NULL'
+where FieldvalueForInsert = ''  
  
 
 update #temp 
 set SqlText = 
-	( case when  Fieldvalue is null  
-		then QUOTENAME(FieldName) + ' = '  +  ISNULL(Fieldvalue, 'NULL' ) 
-		else QUOTENAME(FieldName) + ' = ' + QUOTENAME( Fieldvalue , '''')
+		( case when  Fieldvalue is null  
+		then QUOTENAME(FieldName) + ' = '  +  ISNULL(Fieldvalue, 'NULL' ) 		
+		WHEN FieldTypeId in (5,11,12,10) THEN  --Remove quotes for Field values of type Number,YesNO,Option,Checkbox in update statement.		
+		    '['+FieldName+']'+ ' = '+Fieldvalue
+		else 
+			'['+FieldName+']'+ ' = [' +''''+Fieldvalue +''''+']'
 		end  
-	)  		
+	)  	
 
 
 IF @@ERROR >  0    
@@ -171,9 +173,12 @@ if @cols  is null
 
 -- Concat text for  VALUES list       
 SET @values = STUFF((SELECT						
-							CASE when FieldvalueForInsert = 'NULL' 
+								CASE when FieldvalueForInsert = 'NULL' 
 								then  ', NULL'  
-								else  ',' + QUOTENAME(FieldvalueForInsert, '''')
+								WHEN FieldTypeId in (5,11,12,10) THEN  --Remove quotes for Field values of type Number,YesNO,Option,Checkbox in insert statement.
+								  ',' +  FieldvalueForInsert								
+								else   
+								   ',' + ''''+  FieldvalueForInsert +''''
 								end
 					FROM   #temp
 					WHERE  FieldTypeId NOT IN (2, 3, 20, 21, 13) --  , 2, 3, 17, 21   )    
