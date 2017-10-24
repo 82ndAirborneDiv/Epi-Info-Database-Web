@@ -110,22 +110,21 @@ and FieldTypeId = 10
 update #temp 
 set Fieldvalue = NULL 
 where Fieldvalue = '' 
- 
+  
 update #temp 
 set FieldvalueForInsert = 'NULL'
-where FieldvalueForInsert = ''  
- 
+where FieldvalueForInsert = '' 
 
 update #temp 
 set SqlText = 
-		( case when  Fieldvalue is null  
+	( case when  Fieldvalue is null  
 		then QUOTENAME(FieldName) + ' = '  +  ISNULL(Fieldvalue, 'NULL' ) 		
 		WHEN FieldTypeId in (5,11,12,10) THEN  --Remove quotes for Field values of type Number,YesNO,Option,Checkbox in update statement.		
 		    '['+FieldName+']'+ ' = '+Fieldvalue
 		else 
-			'['+FieldName+']'+ ' = [' +''''+Fieldvalue +''''+']'
+			  '['+FieldName+']' + ' = ''' +Fieldvalue +''''		
 		end  
-	)  	
+	)  		
 
 
 IF @@ERROR >  0    
@@ -173,7 +172,7 @@ if @cols  is null
 
 -- Concat text for  VALUES list       
 SET @values = STUFF((SELECT						
-								CASE when FieldvalueForInsert = 'NULL' 
+							CASE when FieldvalueForInsert = 'NULL' 
 								then  ', NULL'  
 								WHEN FieldTypeId in (5,11,12,10) THEN  --Remove quotes for Field values of type Number,YesNO,Option,Checkbox in insert statement.
 								  ',' +  FieldvalueForInsert								
