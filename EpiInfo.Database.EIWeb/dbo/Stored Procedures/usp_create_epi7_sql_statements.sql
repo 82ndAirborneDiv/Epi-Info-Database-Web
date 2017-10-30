@@ -122,7 +122,7 @@ set SqlText =
 		WHEN FieldTypeId in (5,11,12,10) THEN  --Remove quotes for Field values of type Number,YesNO,Option,Checkbox in update statement.		
 		    '['+FieldName+']'+ ' = '+Fieldvalue
 		else 
-			  '['+FieldName+']' + ' = ''' +Fieldvalue +''''		
+				'['+FieldName+']' + ' = ''' + REPLACE(Fieldvalue ,'''','''''')+''''		--Escape single quote	
 		end  
 	)  		
 
@@ -177,7 +177,7 @@ SET @values = STUFF((SELECT
 								WHEN FieldTypeId in (5,11,12,10) THEN  --Remove quotes for Field values of type Number,YesNO,Option,Checkbox in insert statement.
 								  ',' +  FieldvalueForInsert								
 								else   
-								   ',' + ''''+  FieldvalueForInsert +''''
+								   ',' + ''''+  REPLACE(FieldvalueForInsert ,'''','''''') +''''	--Escape single quote	
 								end
 					FROM   #temp
 					WHERE  FieldTypeId NOT IN (2, 3, 20, 21, 13) --  , 2, 3, 17, 21   )    
